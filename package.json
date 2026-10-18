@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test:ci": "ng test --watch=false",
+    "check": "npm run lint && npm run format:check && npm run test:ci && npm run build"
   },
   "private": true,
   "engines": {
