@@ -38,6 +38,7 @@ module.exports = defineConfig([
           style: 'kebab-case',
         },
       ],
+      '@typescript-eslint/no-extraneous-class': ['error', { allowWithDecorator: true }],
     },
   },
   {
