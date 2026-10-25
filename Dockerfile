@@ -8,6 +8,15 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
+# Deploy info for the footer, passed in by the pipeline. Local builds keep the
+# defaults. Served as /build-info.json, so the running version can be checked.
+ARG BUILD_COMMIT=local
+ARG BUILD_NUMBER=0
+ARG BUILD_TIME=unknown
+RUN printf '{"commit":"%s","build":"%s","time":"%s"}\n' \
+    "$BUILD_COMMIT" "$BUILD_NUMBER" "$BUILD_TIME" > public/build-info.json
+
 RUN npm run build
 
 # ---- Stage 2: Serve ----

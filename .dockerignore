@@ -10,8 +10,9 @@ out-tsc
 .git
 .gitignore
 
-# CI / GitHub
+# CI / GitHub and server scripts
 .github
+ops
 
 # IDE / editor / AI tooling
 .idea
