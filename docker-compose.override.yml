@@ -1,0 +1,8 @@
+# Local development only: `docker compose` merges this file automatically.
+# The server only gets docker-compose.yml.
+services:
+  app:
+    build: .
+    ports:
+      # Bound to localhost, so even by mistake it never opens a public port.
+      - '127.0.0.1:8080:8080'

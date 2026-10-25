@@ -1,0 +1,31 @@
+services:
+  app:
+    # Production defaults. A .env file next to this file on the server can
+    # override them, e.g. IMAGE_TAG=sha-<commit> for a rollback or other
+    # values for staging.
+    image: ghcr.io/tobiasklanert/portfolio:${IMAGE_TAG:-latest}
+    container_name: ${CONTAINER_NAME:-portfolio}
+    networks:
+      - web
+    restart: unless-stopped
+
+    # Hardening: nothing in here needs root rights, kernel capabilities or a
+    # writable file system. nginx only writes its pid and temp files to /tmp.
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+    # Rotate what is still logged (startup, errors) instead of growing forever.
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+networks:
+  web:
+    external: true

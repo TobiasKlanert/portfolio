@@ -1,0 +1,35 @@
+# Dependencies (installed fresh during the build via npm ci)
+node_modules
+
+# Build artifacts
+dist
+out-tsc
+.angular
+
+# Version control
+.git
+.gitignore
+
+# CI / GitHub and server scripts
+.github
+ops
+
+# IDE / editor / AI tooling
+.idea
+.vscode
+.mcp.json
+CLAUDE.md
+
+# Logs and test output
+*.log
+coverage
+
+# Never bake local secrets into an image
+.env
+.env.*
+
+# Not needed inside the image
+README.md
+Dockerfile
+.dockerignore
+docker-compose*.yml
